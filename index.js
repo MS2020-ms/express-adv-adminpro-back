@@ -11,18 +11,16 @@ const app = express();
 //Configurar CORS
 app.use(cors());
 
+//Lectura y parseo del Body - ANTES DE LAS RUTAS
+app.use(express.json());
+
 //Base de Datos
 dbConexion();
 
-//Rutas:
-//req= info desde cliente (Headers...) 
-//res= la respuesta del servidor GET http://localhost:3000
-app.get('/', (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'Hola Mundo'
-    })
-});
+//RUTAS:
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/login'));
+
 
 //puerto donde se levanta la aplicacion desde archivo .env
 app.listen(process.env.PORT, () => {

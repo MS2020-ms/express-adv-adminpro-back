@@ -1,4 +1,16 @@
-GET http://localhost:3000
+//obtener usuarios
+GET http://localhost:3000/api/usuarios
 
 ###
+//crearusuarios
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
 
+{
+"nombre": "Juan Tormento",
+"password": "12345",
+"email": "juan@gmail.com",
+}
+
+
+###

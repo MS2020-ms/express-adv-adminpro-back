@@ -1,4 +1,6 @@
 ### BACKEND ###
+### Express-MongoDB-MongoAtlas-mongoose
+
 - creo package.json -> archivo de entrada de mi aplicacion (dependencias -> node.modules, scripts..)
   >npm init -y
 
@@ -24,6 +26,7 @@
 - Mongo Compass:
   # user: mean_user
   # password: 5Gh24tDg67WOvkhL
+- obtengo url mongodb+srv://mean_user:5Gh24tDg67WOvkhL@cluster0.vjkhl.mongodb.net/hospitaldb -> .env
 
 ### mongoose Conectar Backend con Mongo Atlas
 - https://mongoosejs.com/
@@ -40,3 +43,75 @@
 - requiero en index.js
 
 ### Nuevo Repositorio Github
+- creo nuevo repositorio en Github
+- >git init
+- >git add .
+- >git commit -m "Express y CORS"
+- >git remote add origin https://github.com/MS2020-ms/express-adv-adminpro-back.git
+- >git branch -M main
+- >git push -u origin main
+
+- >git tag -a v0.1.0 -m "Inicio de Backend"
+- >git push --tags
+
+# Rutas: Path en index.js
+# Crear models/usuario.js
+# Crear routes/usuarios.js rutas de los servicios del usuario 
+# Crear controllers/usuarios.js (solo para mis controladores)
+
+## CRUD
+
+# GET Obtener usuarios
+- creo nueva ruta routes/usuarios.js
+- crear metodo getUsuarios en controllers/usuarios.js
+# POST Crear usuario (usando Postman)
+- creo nueva ruta routes/usuarios.js
+- crear metodo crearUsuario en controllers/usuarios.js
+- primero levantar Mongo Compass -> MEAN Atlas
+  user: mean_user
+  password: 5Gh24tDg67WOvkhL
+- peticion POST con Postman
+# Validar que email sea unico
+- definir en models/usuario.js que email sea unique
+- defino en metodo crearUsuarios en controllers/usuarios.js
+# Validar campos obligatorios
+- Instalar xa hacer validaciones semiautomaticas en mis rutas:
+  >npm i express-validator
+- Ir routes/usuarios.js
+# Middleware personalizado
+- Crear middlewares/validar-campos.js
+# Encriptar contrasena
+- Instalar
+  >npm i bcryptjs
+- utilizar en controllers/usuarios.js
+- postman crear usuario POST
+- Mongo Compass veo mi usuario
+# PUT Actualizar un registro de usuario
+- creo nueva ruta routes/usuarios.js
+- defino en metodo actualizarUsuario en controllers/usuarios.js
+# DELETE Borrar un usuario
+- creo nueva ruta routes/usuarios.js
+- defino en metodo borrarUsuario en controllers/usuarios.js
+
+## Login de Usuario
+- creo nueva ruta en index.js
+- creo nuevo archivo route/login.js
+- creo nuevo archivo controllers/login.js
+
+## Generar un TOKEN - JWT (autenticacion pasiva)
+- Instalar
+  >npm i jsonwebtoken
+- creo nuevo archivo helpers/jwt.js
+- archivo .env guardo mi palabra secreta xa firmar mis tokens
+- trabajo en archivo controllers/login.js
+- Ir a Postman y hacer login -> genera token
+
+## Revision del Token - Middleware = Rutas Protegidas
+- Token para getUsuarios -> obliga a hacer login
+  se manda en los Headers
+  se define en un middleware para poder reutilizarlo
+- Creo archivo middlewares/validar-jwt.js
+- Incremento en ruta GET -> routes/usuarios.js
+
+- Token para actualizarUsuario y borrarUsuario
+- Incremento en ruta PUT y DELETE -> routes/usuarios.js
