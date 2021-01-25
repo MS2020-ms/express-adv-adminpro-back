@@ -168,3 +168,43 @@
 - ir archivo routes/uploads.js
 - ir archivo controllers/uploads.js
 - incluir imagen no-img en carpeta uploads/img-por-defecto
+
+### Autenticacion mediante GOOGLE SignIn
+- token se genera en Front y debemos de validar dicho token contra un servicio que nos ofrece Google, que nos dirá si el Token y usuario es correcto.
+- https://developers.google.com/identity/sign-in/web/sign-in
+- Go to the Credentials page
+- Selecciona un proyecto / proyecto nuevo / nombre proyecto / crear
+- Crear credenciales + / ID de cliente OAuth / Configurar pantalla consentimiento / externos / crear
+- Editar registro de la app: nombre App / email / logo
+- Credenciales: Crear credenciales + / ID de cliente OAuth / Aplicacion web / Nombre / crear
+
+-  Tu ID de cliente: 336435646811-aqgj6g638e40m5rn8ti8fc2necd4sdog.apps.googleusercontent.com
+   Tu secreto del cliente: vp5mM8DEaKRMtRT73WmwhBKv
+
+# Crear ID - app y ID - Google Developer
+- En archivo .env pegar google_id y google_secret -> xa hacer autenticaciones en el backend
+- Crear carpeta public
+- Crear archivos index.html -> desde https://developers.google.com/identity/sign-in/web/sign-in
+cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de google signIn y signOut >script con funcion onSignIn y signOut
+- ir index.js -> Directorio publico
+- navegador: http://localhost:3000/
+
+# Probar el Google Sign-In
+
+- * https://console.developers.google.com/apis/credentials?project=enhanced-burner-302818&supportedpurview=project:
+- Lista Blanca: Credenciales/Angular-adv Google-Sign-In /+ Agregar URI (anadir http://localhost:3000) / guardar
+- navegador: boton acceder (puedo elegir cuenta google para autentificarme)
+
+- * https://developers.google.com/identity/sign-in/web/sign-in
+- Authenticate with a Backend Server (me va permitir generar el token):
+  Send the ID token to your server -> copiar linea dentro de funcion onSignIn del index.html
+
+# Validar token de Google en backend
+- instalar >npm install google-auth-library --save
+- craer ruta en postman Login Google
+- ir routes/login.js
+- ir controllers/login.js
+- crear archivo helpers/google-verify.js
+
+# Crear un usuario en BD desde la informacion del token 
+- ir archivo controllers/login.js
