@@ -1,6 +1,10 @@
 ### BACKEND ###
 ### Express-MongoDB-MongoAtlas-mongoose
 
+[Abrir terminal: >npm run start:dev] -> servidor local
+[Abrir Postman -> AdminPro-Backend] -> peticiones
+[Abrir MongoDB Compass: MEAN Atlas] -> base datos
+
 - creo package.json -> archivo de entrada de mi aplicacion (dependencias -> node.modules, scripts..)
   >npm init -y
 
@@ -115,3 +119,52 @@
 
 - Token para actualizarUsuario y borrarUsuario
 - Incremento en ruta PUT y DELETE -> routes/usuarios.js
+
+### CRUD Hospitales
+- Creo el modelo en nuevo archivo models/hospital.js
+- creo nuevo archivo controllers/hospitales.js
+- creo nuevo archivo routes/hospitales.js
+- creo las rutas en index.js
+
+### CRUD Medicos
+- Creo el modelo en nuevo archivo models/medico.js
+- creo nuevo archivo controllers/medicos.js
+- creo nuevo archivo routes/medicos.js
+- creo las rutas en index.js
+
+# Crear hospitales
+# Crear medicos
+- routes/medicos.js -> middlewares y validaciones
+- controllers/medicos.js ->
+# Obtener hospitales (getHospitales)
+# Obtener medicos (getMedicos)
+
+## Paginar manualmente resultados de busqueda ( *existen lib de mongoose)
+- ir controllers/usuarios.js
+
+### Controlador de BUSQUEDA (search en TODAS las colecciones)
+- creo nueva ruta en el index.js
+- creo nuevo archivo routes/busquedas.js
+- creo nuevo archivo controllers/busquedas.js
+
+# Controlador de BUSQUEDA (search en UNA coleccion)
+- ir archivo  routes/busquedas.js
+- ir archivo  controllers/busquedas.js
+
+### Subir archivos (imagen, pdf, excel...) al Servidor
+- creo nueva carpeta uploads y dentro tres carpetas medicos, usuarios y hospitales
+- creo nueva ruta index.js
+- creo nuevo archivo routes/uploads.js
+- creo nuevo archivo controllers/uploads.js
+- npm express-fileupload
+  >npm i express-fileupload
+# asignar un id (identificador unico) a las imagenes que subo
+- npm uuid
+  >npm install uuid
+# asignar la imagen a un usuario, medico o hospital
+- creo nuevo archivo helpers/actualizar-imagen.js
+- ir archivo controllers/uploads.js
+# ruta para obtener imagenes
+- ir archivo routes/uploads.js
+- ir archivo controllers/uploads.js
+- incluir imagen no-img en carpeta uploads/img-por-defecto

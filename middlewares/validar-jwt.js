@@ -6,7 +6,7 @@ const validarJWT = (req, res, next) => {
     //leer el token de los Headers
     const token = req.header('x-token');
     //log se ve en terminal porque paso por el middleware
-    console.log(token);
+    //console.log(token);
 
     if (!token) {
         return res.status(401).json({

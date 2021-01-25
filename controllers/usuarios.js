@@ -10,13 +10,38 @@ const { generarJWT } = require('../helpers/jwt');
 //Obtener usuarios 
 const getUsuarios = async (req, res) => {
 
-    //defino lo que quiero recibir -> 'nombre email role google'
-    const usuarios = await Usuario.find({}, 'nombre email role google');
+    //para paginar manualmente la lista de respuesta
+    //localhost:3000/api/usuarios?desde=5
 
+    // Obligatorios: Están definidos en la RUTA y son necesarios ya que sin ellos, no funciona el servicio, estos los leemos con los req.params.busqueda  (por ejemplo)
+    // Opcionales: Son los que visualmente no están en la ruta, pero tu sabes que los pueden enviar, y si los envían los usas, pero si no los envían no pasa nada, para esto los leemos así req.query.desde 
+    const desde = Number(req.query.desde) || 0;
+    console.log(desde);
+
+    //defino lo que quiero recibir al hacer getUsuarios -> 'nombre email img role google'
+    //paginar -> skip(saltar desde) y limit(n° elementos)
+    // const usuarios = await Usuario
+    //     .find({}, 'nombre email img role google')
+    //     .skip(desde)
+    //     .limit(5);
+
+    //xa contar cuantos usuarios tengo en mi BD
+    // const total = await Usuario.countDocuments();
+
+    const [usuarios, total] = await Promise.all([
+        Usuario
+            .find({}, 'nombre email img role google')
+            .skip(desde)
+            .limit(5),
+        Usuario.countDocuments()
+    ]);
+
+    //LISTA LO QUE VOY A VER AL HACER GET USUARIOS
     res.json({
         ok: true,
         usuarios: usuarios,
-        uid: req.uid //uid del usuario que hizo la peticion (ver middleware/validar-jwt.js)
+        uid: req.uid, //uid del usuario que hizo la peticion (ver middleware/validar-jwt.js)
+        total: total
     });
 }
 
@@ -70,7 +95,7 @@ const crearUsuarios = async (req, res = response) => {
 const actualizarUsuario = async (req, res = response) => {
 
     //Todo: Validar token y conprobar si es el usuario correcto!!!
-
+    //en routes/usuarios definido '/:id'
     const uid = req.params.id;
 
     try {
@@ -118,6 +143,7 @@ const actualizarUsuario = async (req, res = response) => {
 //borrar usuario
 const borrarUsuario = async (req, res = response) => {
 
+    //en routes/usuarios definido '/:id'
     const uid = req.params.id;
 
     try {

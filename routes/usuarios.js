@@ -5,7 +5,13 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 
-const { getUsuarios, crearUsuarios, actualizarUsuario, borrarUsuario } = require('../controllers/usuarios');
+const {
+    getUsuarios,
+    crearUsuarios,
+    actualizarUsuario,
+    borrarUsuario
+} = require('../controllers/usuarios');
+
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
@@ -13,7 +19,7 @@ const router = Router();
 //RUTAS:
 
 //GET obtener usuarios
-//middleware validarJWT
+//middleware validarJWT - necesito enviar token en Headers
 router.get('/', validarJWT, getUsuarios);
 
 //POST crear usuario (ruta, middleware, controlador)
@@ -28,7 +34,7 @@ router.post('/',
     crearUsuarios);
 
 //PUT actualizar usuario
-//middleware validarJWT
+//middleware validarJWT - necesito enviar token en Headers
 router.put('/:id',
     [
         validarJWT,
