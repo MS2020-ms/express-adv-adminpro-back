@@ -34,11 +34,17 @@ router.post('/',
 
 //PUT actualizar medico
 router.put('/:id',
-    [],
+    [
+        validarJWT,
+        check('nombre', 'El nombre del Medico es requerido').not().isEmpty(),
+        check('hospital', 'El hospital id debe de ser valido').isMongoId(),
+        validarCampos
+    ],
     actualizarMedico);
 
 //DELETE borrar medico
 router.delete('/:id',
+    validarJWT,
     borrarMedico);
 
 module.exports = router;

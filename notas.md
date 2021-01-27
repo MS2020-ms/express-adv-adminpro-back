@@ -190,7 +190,6 @@ cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de googl
 - navegador: http://localhost:3000/
 
 # Probar el Google Sign-In
-
 - * https://console.developers.google.com/apis/credentials?project=enhanced-burner-302818&supportedpurview=project:
 - Lista Blanca: Credenciales/Angular-adv Google-Sign-In /+ Agregar URI (anadir http://localhost:3000) / guardar
 - navegador: boton acceder (puedo elegir cuenta google para autentificarme)
@@ -208,3 +207,28 @@ cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de googl
 
 # Crear un usuario en BD desde la informacion del token 
 - ir archivo controllers/login.js
+
+### Actualizar Token
+- Primero renovar el Token (token tiene 12 horas de vigencia)
+- creo nueva ruta routes/login -> '/renew'
+- creo nuevo metodo controllers/login -> renewToken
+
+### CRUD Hospitales
+# actualizar hospital
+- crear nueva ruta en Postman -> Actualizar Hospital
+- creo routes/hospitales.js
+- creo nuevo metodo controllers/hospitales.js -> actualizarHospital
+# eliminar hospital
+- crear nueva ruta en Postman -> Borrar Hospital
+- creo routes/hospitales.js
+- creo nuevo metodo controllers/hospitales.js -> borrarHospital
+
+### CRUD Medicos
+# actualizar medico
+- crear nueva ruta en Postman -> Actualizar Medico
+- creo routes/medicos.js
+- creo nuevo metodo controllers/medicos.js -> actualizarMedico
+# eliminar medico
+- crear nueva ruta en Postman -> Borrar Medico
+- creo routes/medicos.js
+- creo nuevo metodo controllers/medicos.js -> borrarMedico

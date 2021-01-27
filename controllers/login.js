@@ -96,11 +96,24 @@ const googleSignIn = async (req, res = response) => {
             msg: 'Token no es correcto'
         });
     }
+}
 
+//mando token antiguo y recibo el nuevo token (12 horas de vigencia)
+const renewToken = async (req, res = response) => {
 
+    const uid = req.uid;
+
+    //Generar TOKEN en backend - JWT
+    const token = await generarJWT(uid);
+
+    res.json({
+        ok: true,
+        token: token
+    });
 }
 
 module.exports = {
     login,
-    googleSignIn
+    googleSignIn,
+    renewToken
 }
