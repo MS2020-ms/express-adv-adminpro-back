@@ -11,15 +11,16 @@ const {
     getMedicos,
     crearMedico,
     actualizarMedico,
-    borrarMedico
-} = require('../controllers/medico')
+    borrarMedico,
+    getMedicoById
+} = require('../controllers/medicos')
 
 const router = Router();
 
 //RUTAS:
 
 //GET obtener medicos
-router.get('/', getMedicos);
+router.get('/', validarJWT, getMedicos);
 
 //POST crear medico
 //middleware validarJWT - necesito enviar token en Headers
@@ -46,5 +47,10 @@ router.put('/:id',
 router.delete('/:id',
     validarJWT,
     borrarMedico);
+
+//GET obtener medico por Id
+router.get('/:id',
+    validarJWT,
+    getMedicoById);
 
 module.exports = router;

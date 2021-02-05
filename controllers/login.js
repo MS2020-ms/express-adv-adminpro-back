@@ -2,7 +2,7 @@
 const { response } = require('express');
 const bcrypt = require('bcryptjs');
 
-const usuario = require('../models/usuario');
+const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVerify } = require('../helpers/google-verify');
 
@@ -13,7 +13,7 @@ const login = async (req, res = response) => {
     try {
 
         //Verificar email:
-        const usuarioDB = await usuario.findOne({ email });
+        const usuarioDB = await Usuario.findOne({ email });
 
         //si NO existe el email en mi BD -> envio mensaje
         if (!usuarioDB) {
@@ -98,6 +98,7 @@ const googleSignIn = async (req, res = response) => {
     }
 }
 
+//Renovar token cuando haya expirado el tiempo
 //mando token antiguo y recibo el nuevo token (12 horas de vigencia)
 const renewToken = async (req, res = response) => {
 
@@ -106,9 +107,13 @@ const renewToken = async (req, res = response) => {
     //Generar TOKEN en backend - JWT
     const token = await generarJWT(uid);
 
+    //Obtener el usuario por uid
+    const usuario = await Usuario.findById(uid);
+
     res.json({
         ok: true,
-        token: token
+        token: token,
+        usuario: usuario
     });
 }
 

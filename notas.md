@@ -47,7 +47,7 @@
 - requiero en index.js
 
 ### Nuevo Repositorio Github
-- creo nuevo repositorio en Github
+- Primero creo nuevo repositorio en Github
 - >git init
 - >git add .
 - >git commit -m "Express y CORS"
@@ -232,3 +232,10 @@ cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de googl
 - crear nueva ruta en Postman -> Borrar Medico
 - creo routes/medicos.js
 - creo nuevo metodo controllers/medicos.js -> borrarMedico
+
+### Bloquear cambiar email si logado como usuario de Google
+- ir controllers/usuarios.js
+
+### Nueva ruta getMedicoById
+- ir routes/medicos.js
+- ir controllers/medicos.js

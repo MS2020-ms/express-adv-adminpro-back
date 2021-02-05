@@ -17,6 +17,29 @@ const getMedicos = async (req, res = response) => {
     })
 }
 
+const getMedicoById = async (req, res = response) => {
+    const id = req.params.id;
+    try {
+        //dentro del find() se pueden poner condiciones
+        //populate() [propiedad de mongoose] xa saber quien creo el medico (usuario) y su hospital
+        const medico = await Medico
+            .findById(id)
+            .populate('usuario', 'nombre email img')
+            .populate('hospital', 'nombre img');
+
+        res.json({
+            ok: true,
+            medico: medico
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: true,
+            msg: 'Medico no encontrado...Hable con el Administrador'
+        })
+    }
+}
+
 const crearMedico = async (req, res = response) => {
     //uid viene del token
     const uid = req.uid;
@@ -115,5 +138,6 @@ module.exports = {
     getMedicos,
     crearMedico,
     actualizarMedico,
-    borrarMedico
+    borrarMedico,
+    getMedicoById
 }
