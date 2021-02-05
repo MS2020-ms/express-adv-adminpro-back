@@ -239,3 +239,18 @@ cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de googl
 ### Nueva ruta getMedicoById
 - ir routes/medicos.js
 - ir controllers/medicos.js
+
+### Dependiendo ROLE reegresar el menu de Mantenimiento -> desde BACKEND
+- crear un helper menu-frontend.js
+- ir controllers/login
+
+### Validar el ADMIN_ROLE 
+- xa garantizar que puedo actualizar usuarios solo si soy ADMIN
+- ir validar-jwt implementar validarADMIN_ROLE()
+- implementar el middleware validarADMIN_ROLE() en las rutas que debo proteger
+- ir routes/usuarios 
+
+### Validar si es el mismo usuario (xa poder editar su perfil) o un ADMIN
+- ir validar-jwt implementar validarADMIN_ROLE_o_MismoUsuario()
+- implementar el middleware validarADMIN_ROLE_o_MismoUsuario() en las rutas que debo proteger
+- ir routes/usuarios 
