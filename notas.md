@@ -254,3 +254,42 @@ cargo la libreria de google >script y >meta con el GOOGLE_ID y >botones de googl
 - ir validar-jwt implementar validarADMIN_ROLE_o_MismoUsuario()
 - implementar el middleware validarADMIN_ROLE_o_MismoUsuario() en las rutas que debo proteger
 - ir routes/usuarios 
+
+### Desplegar nuestro Backend(con node) a un Server en la nube (HEROKU hosting gratis)
+- heroku https://signup.heroku.com/ - login
+- new / crear nueva app / nombre 
+- deployment method: Heroku Git
+- ir package.json -> scripts: "start": "node index.js"
+- Pasos:
+  Download and install the Heroku CLI or comprobar si ya la tengo >heroku --version  
+  >heroku login
+  >heroku git:remote -a adminpro-backend-ms
+  >git push heroku master
+  # si tengo cambios
+  >git add .
+  >git commit -m "implementado start comand"
+  >git push heroku master
+  # peticiones a heroku
+  voy a postman -> peticion login https://adminpro-backend-ms.herokuapp.com/api/login -> funcionando
+
+  ### Cloudinary xa desplegar imagenes
+
+  ### Generar el build de produccion en Frontend y combinar con Backend
+  # Frontend
+- ir a enviroments/enviroment.prod.ts
+  url de produccion de mi app subida a heroku -> https://adminpro-backend-ms.herokuapp.com/api
+- generar build de produccion
+  >ng build --prod
+  crea nueva carpeta dist
+  # Frontend-Backend
+- copiar todo contenido de carpeta dist (asset, main, runtime...) y pegar en BACKEND dentro de la carpeta public (primero cambiar el nombre del archivo index.html existente por index-ms.html)
+  # Backend
+- subir a heroku:
+  >git add .
+  >git commit -m "AngularApp v1 desplegada"
+  >git push heroku master
+
+- si voy a heroku - open app -> veo mi aplicacion completa desplegada (salvo las imagenes)!
+
+- cuando tengo aplicacion subida a heroku, pasa todo por el index.js
+  ir index.js

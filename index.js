@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const path = require('path');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -28,6 +30,11 @@ app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/uploads', require('./routes/uploads'));
 app.use('/api/login', require('./routes/login'));
 
+
+//si no pasa por estas rutas, que haga lo siguiente:
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public/index.html'));
+})
 
 //puerto donde se levanta la aplicacion desde archivo .env
 app.listen(process.env.PORT, () => {
